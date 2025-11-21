@@ -29,20 +29,6 @@ def gen_mask(
     prompt_text="cheetah",
     frame_interval=1,   # <- NEW: save every N-th frame
 ):
-    """
-    Run SAM3 on a video and output RGBA cutouts.
-
-    Parameters
-    ----------
-    video_path : str
-        Path to the video file or JPEG folder.
-    save_dir : str
-        Directory where RGBA outputs will be saved.
-    prompt_text : str
-        Text prompt for SAM3 (e.g. "cheetah").
-    frame_interval : int
-        Only save every N-th frame (default: 1 = save all).
-    """
 
     save_dir = str(save_dir)
     os.makedirs(save_dir, exist_ok=True)

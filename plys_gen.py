@@ -23,18 +23,6 @@ def gen_plys(
     config_path="checkpoints/hf/pipeline.yaml",
     seed=42,
 ):
-    """
-    Generate Gaussian splat PLYs using SAM-3D-Objects inference.
-
-    Parameters
-    ----------
-    rgba_dir : folder with rgba images (RGBA PNGs)
-    mask_dir : folder with masks (same filenames as rgba)
-    ply_out_dir : output folder for .ply
-    sam3d_root : path to sam-3d-objects repo, MUST contain `notebook/` & `checkpoints/`
-    config_path : config path RELATIVE to sam3d_root OR absolute
-    seed : random seed
-    """
 
     rgba_dir = Path(rgba_dir)
     mask_dir = Path(mask_dir)
@@ -52,11 +40,9 @@ def gen_plys(
     # -----------------------------
     # Ensure `sam3d_objects` package is importable
     # -----------------------------
-    # Add the sam3d repo path.
     pkg_parent = None
     candidates = [
-        sam3d_root,
-        sam3d_root / "src",   # in case the repo uses a src layout
+        sam3d_root
     ]
     for parent in candidates:
         pkg_dir = parent / "sam3d_objects"
@@ -83,7 +69,6 @@ def gen_plys(
     if str(notebook_dir) not in sys.path:
         sys.path.insert(0, str(notebook_dir))
 
-    # Now safe to import; this will import `sam3d_objects` internally
     from inference import Inference, load_image
 
     # -----------------------------
@@ -115,9 +100,9 @@ def gen_plys(
 
         print(f"[PLYS_GEN] Processing frame {i}: image={rgba_path}, mask={mask_path}")
 
-        # RGBA image
+        # Original image
         image = load_image(rgba_path)
-        # binary mask
+        # Image mask
         mask = load_mask_from_png(mask_path)
 
         # run model

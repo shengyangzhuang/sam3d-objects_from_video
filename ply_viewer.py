@@ -27,12 +27,8 @@ vis.poll_events()
 vis.update_renderer()
 
 print("Rotate/zoom to the view you like, then press 'q' to close the interactive phase.")
-# This lets you choose the camera/view; when you press 'q', the window stays open,
-# but vis.run() returns and we regain control.
-vis.run()
 
-# At this point, the camera is exactly where you left it.
-# We do NOT convert camera parameters or create a new window.
+vis.run()
 
 # ---------- 2) VIDEO WRITER ----------
 fourcc = cv2.VideoWriter_fourcc(*"mp4v")
