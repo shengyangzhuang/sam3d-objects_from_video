@@ -1,7 +1,6 @@
 # sam3d-objects_from_video
-=======
 
-This tool uses SAM3D to continuously reconstruct an object from a video, exporting a sequence of `.ply` point clouds.
+This tool uses SAM3D to continuously reconstruct an object from a video, exporting a sequence of gaussian splatting point clouds.
 
 ---
 
